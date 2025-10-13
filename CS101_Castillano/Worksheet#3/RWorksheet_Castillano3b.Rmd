@@ -1,0 +1,136 @@
+---
+title: "RWorksheet_Castillano#3b"
+author: "Castillano, Rashir John E."
+date: "2025-10-13"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#1
+#a
+data <- data.frame(
+  Respondents = 1:20,
+  Sex = c(2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 1, 3, 2, 1, 2, 1),
+  Fathers_Occupation = c(1, 3, 2, 3, 1, 1, 2, 2, 1, 3, 2, 1, 1, 3, 1, 2, 3, 2, 2, 1),
+  Persons_at_Home = c(5, 3, 7, 5, 7, 6, 3, 6, 8, 1, 2, 4, 5, 7, 7, 3, 5, 6, 3, 6),
+  Siblings_at_School = c(6, 4, 1, 1, 6, 5, 5, 3, 4, 3, 5, 2, 2, 2, 4, 5, 2, 3, 5, 6),
+  Types_of_Houses = c(1, 2, 2, 3, 1, 3, 1, 1, 1, 2, 2, 3, 3, 2, 1, 2, 3, 2, 2, 3)
+)
+data
+```
+```{r}
+#b
+# Get the structure of the data
+str(data)
+
+# Get the summary of the data
+summary(data)
+```
+```{r}
+#c
+# Calculate the mean of Siblings at School
+mean_siblings <- mean(data$Siblings_at_School)
+
+# Check if the mean is equal to 5
+mean_siblings == 5
+```
+```{r}
+#d
+subset_1st_two_rows <- data[1:2, ]
+print(subset_1st_two_rows)
+```
+```{r}
+#e
+subset_3rd_5th_rows <- data[c(3, 5), c(2, 4)]
+print(subset_3rd_5th_rows)
+```
+```{r}
+#f
+types_houses <- data$Types_of_Houses
+print(types_houses)
+```
+```{r}
+#g
+males_farmer <- subset(data, Sex == 1 & Fathers_Occupation == 1)
+print(males_farmer)
+```
+```{r}
+#h
+females_siblings_ge5 <- subset(data, Sex == 2 & Siblings_at_School >= 5)
+print(females_siblings_ge5)
+```
+
+```{r}
+#2
+#a
+df <- data.frame(
+  Ints = integer(),
+  Doubles = double(),
+  Characters = character(),
+  Logicals = logical(),
+  Factors = factor(),
+  stringsAsFactors = FALSE
+)
+print("Structure of the empty dataframe:")
+print(str(df))
+#explanation
+##The str() function outputs the structure of the empty data frame, showing that it has no data (0 rows) but has defined column types. The column types are specified as integers, doubles, characters, logicals, and factors, with the factor column having no levels as it is empty.
+```
+
+```{r}
+#3
+#a
+household_data <- data.frame(
+  Respondents = 1:10,
+  Sex = c("Male", "Female", "Female", "Male", "Male", "Female", "Male", "Female", "Female", "Male"),
+  Fathers_Occupation = c(1, 2, 3, 1, 3, 2, 1, 3, 1, 2), # Assuming these represent occupation codes
+  Persons_at_Home = c(5, 3, 4, 3, 5, 4, 3, 6, 5, 3),
+  Siblings_at_School = c(6, 3, 4, 8, 6, 5, 5, 3, 4, 3),
+  Types_of_Houses = c("Wood", "Wood", "Concrete", "Wood", "Wood", "Semi-concrete", "Semi-concrete", 
+                      "Wood", "Semi-concrete", "Concrete")
+)
+write.csv(household_data, file = "HouseholdData.csv", row.names = FALSE)
+print(household_data)
+
+imported_data <- read.csv("HouseholdData.csv")
+print(imported_data)
+```
+```{r}
+#b
+imported_data$Sex <- factor(imported_data$Sex, levels = c("Male", "Female"), labels = c(1, 2))
+print(imported_data)
+```
+```{r}
+#c
+imported_data$Types_of_Houses <- factor(imported_data$Types_of_Houses, 
+                                         levels = c("Wood", "Concrete", "Semi-concrete"), 
+                                         labels = c(1, 2, 3))
+print(imported_data)
+```
+```{r}
+#d
+imported_data$Fathers_Occupation <- factor(imported_data$Fathers_Occupation, 
+                                           levels = c(1, 2, 3), 
+                                           labels = c("Farmer", "Driver", "Others"))
+print(imported_data)
+```
+```{r}
+#e
+females_driver <- subset(imported_data, Sex == 2 & Fathers_Occupation == "Driver")
+print(females_driver)
+```
+```{r}
+#f
+siblings_ge5 <- subset(imported_data, Siblings_at_School >= 5)
+print(siblings_ge5)
+```
+
+```{r}
+#4
+#interpret the graph
+
+```

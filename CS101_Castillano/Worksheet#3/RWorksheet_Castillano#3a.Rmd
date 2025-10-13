@@ -1,0 +1,151 @@
+---
+title: "RWorksheet_Castillano#3"
+author: "Castillano, Rashir John E."
+date: "2025-10-13"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#1.
+LETTERS
+letters
+```
+```{r}
+#LETTERS
+#a
+first_eleven <-head (LETTERS, 11)
+first_eleven
+```
+
+```{r}
+#b
+alphabet <- LETTERS
+odd_letters <- alphabet[seq(1, length(alphabet),2)]
+odd_letters
+```
+```{r}
+#c
+vowel <- LETTERS
+vowels <- vowel[c(1, 5, 9, 15, 21)] 
+vowels
+```
+```{r}
+#letters
+#d
+last_five <-tail (letters, 5)
+last_five
+```
+
+```{r}
+#e
+betweens <- letters[c(15:24)]
+betweens
+```
+
+```{r}
+#2a.
+#a
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+city
+```
+```{r}
+#b
+temp <- c(42, 39, 34, 34, 30, 27)
+temp
+```
+```{r}
+#c
+weather_data <- data.frame(city, temp)
+weather_data
+```
+```{r}
+#d
+names(weather_data) <- c("City", "Temperature")
+weather_data
+```
+
+```{r}
+#e
+str(weather_data)
+##The dataframe weather_data has 6 observations (rows) and 2 variables (columns).
+##The City column is of type character (chr).
+##The Temperature column is of type numeric (num).
+```
+```{r}
+#f
+weather_data[3, ]
+weather_data[4, ]
+```
+
+
+```{r}
+#g
+weather_data[which.max(weather_data$Temperature), ]
+weather_data[which.min(weather_data$Temperature), ]
+```
+```{r}
+#2b.
+#a
+mat <- matrix(c(1:8, 11:14), nrow = 3, ncol = 4)
+mat
+```
+```{r}
+#b
+mat * 2
+```
+```{r}
+#c
+mat[2, ]
+```
+```{r}
+#d
+mat[1:2, 3:4]
+```
+```{r}
+#e
+mat[3, 2:3]
+```
+```{r}
+
+```
+```{r}
+#f
+mat [ , 4]
+```
+```{r}
+#g
+mat <- matrix(1:12, nrow = 3, ncol = 4)
+rownames(mat) <- c("isa", "dalawa", "tatlo")
+colnames(mat) <- c("uno", "dos", "tres", "quatro")
+print(mat)
+```
+```{r}
+#h
+dim(mat) <- c(6, 2)
+mat
+```
+```{r}
+#3
+#a
+values <- c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1)
+arr <- array(rep(values, 2), dim = c(2, 4, 3))
+arr
+```
+```{r}
+#b
+length(dim(arr))
+```
+```{r}
+#c
+dimnames(arr) <- list(
+  letters[1:2],
+  LETTERS[1:4],
+  c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array")
+)
+
+arr
+```
