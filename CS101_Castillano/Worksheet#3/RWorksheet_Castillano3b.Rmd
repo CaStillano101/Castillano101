@@ -132,5 +132,23 @@ print(siblings_ge5)
 ```{r}
 #4
 #interpret the graph
-
+Date <- c(
+  "July 14", "July 14", "July 14",
+  "July 15", "July 15", "July 15",
+  "July 17", "July 17", "July 17",
+  "July 18", "July 18", "July 18",
+  "July 20", "July 20", "July 20",
+  "July 21", "July 21", "July 21"
+)
+Sentiment <- rep(c("Negative", "Neutral", "Positive"), times = 6)
+Count <- c(
+  2400, 1600, 1700,
+  3800, 2900, 3200,
+  3300, 1700, 2500,
+  3300, 2000, 2600,
+  2200, 1400, 1600,
+  3700, 2800, 3400
+)
+sentiment_data <- data.frame(Date, Sentiment, Count)
+sentiment_data
 ```
