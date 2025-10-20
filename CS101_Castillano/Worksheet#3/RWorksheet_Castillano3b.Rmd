@@ -87,10 +87,10 @@ print(str(df))
 household_data <- data.frame(
   Respondents = 1:10,
   Sex = c("Male", "Female", "Female", "Male", "Male", "Female", "Male", "Female", "Female", "Male"),
-  Fathers_Occupation = c(1, 2, 3, 1, 3, 2, 1, 3, 1, 2), # Assuming these represent occupation codes
-  Persons_at_Home = c(5, 3, 4, 3, 5, 4, 3, 6, 5, 3),
-  Siblings_at_School = c(6, 3, 4, 8, 6, 5, 5, 3, 4, 3),
-  Types_of_Houses = c("Wood", "Wood", "Concrete", "Wood", "Wood", "Semi-concrete", "Semi-concrete", 
+  Fathers_Occupation = c(1, 2, 3, 3, 1, 2, 2, 3, 1, 3), # Assuming these represent occupation codes
+  Persons_at_Home = c(5, 7, 3, 8, 6, 4, 2, 2, 11, 6),
+  Siblings_at_School = c(2, 3, 0, 5, 2, 3, 1, 2, 6, 2),
+  Types_of_Houses = c("Wood", "Congrete", "Congrete", "Wood", "Wood", "Semi-congrete", "Semi-congrete", 
                       "Wood", "Semi-concrete", "Concrete")
 )
 write.csv(household_data, file = "HouseholdData.csv", row.names = FALSE)
