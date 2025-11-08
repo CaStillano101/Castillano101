@@ -1,0 +1,137 @@
+---
+title: "RWorksheet_Castillano4b"
+author: "Castillano, Rashir John E."
+date: "2025-11-03"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#1
+vectorA <- 1:5
+mat <- matrix(0, nrow = 5, ncol = 5)
+
+for(i in 1:5){
+for(j in 1:5){
+mat[i,j] <- abs(vectorA[j] - i)
+}
+}
+print(mat)
+```
+```{r}
+#2
+for(i in 1:5){
+for(j in 1:i){
+cat("*")
+}
+cat("\n")
+}
+
+```
+```{r}
+#3
+n <- 5
+a <- 0
+b <- 1
+cat("Fibonacci numbers starting from", n, "up to 500:\n")
+repeat {
+fib <- a + b
+if (fib > 500) break
+if (fib >= n) cat(fib, " ")
+a <- b
+b <- fib
+}
+cat("\n")
+
+```
+```{r}
+#4
+fig1 <- matrix(c(0,1,2,3,4,
+1,0,1,2,3,
+2,1,0,1,2,
+3,2,1,0,1,
+4,3,2,1,0), nrow=5, byrow=TRUE)
+write.csv(fig1, "figure1.csv", row.names=FALSE)
+figure1 <- read.csv("figure1.csv", header=FALSE)
+print(figure1)
+
+shoe_size <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5,
+13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 10.5, 11.0, 9.0, 13.0)
+height <- c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0, 71.0, 71.0,
+77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 72.0, 69.0, 69.0, 70.0)
+gender <- c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M",
+"M", "M", "F", "F", "M", "F", "F", "M", "M", "M", "M", "M", "M")
+
+df <- data.frame(Shoe_size = shoe_size, Height = height, Gender = gender)
+write.csv(df, "figure3.csv", row.names = FALSE)
+
+gender_count <- table(df$Gender)
+barplot(gender_count, col=c("pink","lightblue"), main="Number of Males and Females in Household Data", xlab="Gender", ylab="Number of Individuals")
+legend("topright", legend=names(gender_count), fill=c("pink","lightblue"))
+
+```
+```{r}
+#5
+expenses <- c(60, 10, 5, 25)
+categories <- c("Food", "Electricity", "Savings", "Miscellaneous")
+percent <- round(expenses / sum(expenses) * 100)
+labels <- paste(categories, percent, "%")
+pie(expenses,
+    labels = labels,
+    col = c("orange", "yellow", "lightgreen", "skyblue"),
+    main = "Monthly Income Distribution of Dela Cruz Family")
+```
+```{r}
+#6
+data(iris)
+mean_values <- colMeans(iris[, 1:4])
+
+species_count <- table(iris$Species)
+pie(species_count, col = c("lightpink", "lightblue", "lightgreen"), main = "Species Distribution in Iris Dataset", labels = paste(names(species_count), species_count))
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+
+colors <- c("red", "blue", "green")
+species_colors <- colors[as.numeric(iris$Species)]
+plot(iris$Sepal.Length, iris$Sepal.Width, col = species_colors, pch = 19, main = "Iris Dataset", sub = "Sepal width and length", xlab = "Sepal Length", ylab = "Sepal Width")
+legend("topright", legend = levels(iris$Species), col = colors, pch = 19)
+
+```
+```{r}
+#7
+install.packages("readxl")
+install.packages("gridExtra")
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(gridExtra)
+library(readxl)
+
+df <- read_excel("alexa-file.xlsx")
+df$variation <- str_squish(df$variation)
+df$variation <- gsub("^White.*", "White", df$variation)
+df$variation <- gsub("^Black.*", "Black", df$variation)
+
+variations <- df %>% count(variation)
+v <- variations$n
+names(v) <- variations$variation
+barplot(v, main="Total Alexa Variations", xlab="Variation", ylab="Count", col=rainbow(length(v)))
+
+black_variants <- c(261, 270, 265, 241, 516, 430, 350, 157)
+black_labels <- c("Black", "Black Plus", "Black Show", "Black Spot", "Black Dot", "Charcoal Fabric", "Configuration: Fire TV Stick", "Heather Gray Fabric")
+white_variants <- c(100, 150, 90, 95, 120)
+white_labels <- c("White", "White Dot", "White Plus", "White Show", "White Spot")
+
+black_data <- data.frame(Variation = black_labels, Total = black_variants)
+white_data <- data.frame(Variation = white_labels, Total = white_variants)
+
+plot_black <- ggplot(black_data, aes(x = Variation, y = Total, fill = Variation)) + geom_bar(stat = "identity") + theme_minimal() + labs(title = "Black Variants", x = "Variation", y = "Total Numbers") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+plot_white <- ggplot(white_data, aes(x = Variation, y = Total, fill = Variation)) + geom_bar(stat = "identity") + theme_minimal() + labs(title = "White Variants", x = "Variation", y = "Total Numbers") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+grid.arrange(plot_black, plot_white, ncol = 2)
+
+```

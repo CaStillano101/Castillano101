@@ -93,46 +93,35 @@ data
 ```
 ```{r}
 #6
-# Full Search program (if user types "r" or just presses Enter -> random pick)
-cat("Enter a number (1-50) or type 'r' to randomly pick a number from 1 to 50: ")
-user_in <- readline()
+if (interactive()) {
+  mode <- tolower(trimws(readline("Enter mode ('r' for random, 'm' for manual): ")))
+} else {
+  mode <- "r"
+}
 
-# choose random if user typed 'r' or empty input
-if(tolower(trimws(user_in)) == "" || tolower(trimws(user_in)) == "r"){
+if (mode == "r") {
   chosen <- sample(1:50, 1)
   cat("Randomly chosen number:", chosen, "\n")
-} else {
-  # try convert to numeric; handle non-numeric gracefully
-  chosen <- suppressWarnings(as.numeric(user_in))
-  if(is.na(chosen)){
-    cat("Invalid input. Please enter a number or 'r' for random.\n")
-    quit(status = 0)
+} else if (mode == "m") {
+  if (interactive()) {
+    input <- readline("Enter an integer: ")
+    chosen_num <- suppressWarnings(as.integer(input))
+    if (is.na(chosen_num)) stop("Invalid input: please enter an integer.")
+    chosen <- chosen_num
   } else {
-    cat("You entered:", chosen, "\n")
+    chosen <- 20
+    cat("Default number selected for knitting:", chosen, "\n")
   }
+} else {
+  stop("Invalid mode. Use 'r' or 'm'.")
 }
 
-# exhaustive search over the set 1:50
-numbers <- 1:50
-found <- FALSE
-for(i in seq_along(numbers)){
-  if(numbers[i] == chosen){
-    found <- TRUE
-    break
-  }
-}
-
-# Output according to the spec
-if(!found){
+if (chosen < 1 || chosen > 50) {
   cat("The number selected is beyond the range of 1 to 50\n")
+} else if (chosen == 20) {
+  cat("TRUE\n")
 } else {
-  # if the chosen number is 20 -> print TRUE (logical TRUE)
-  if(chosen == 20){
-    print(TRUE)
-  } else {
-    # otherwise print the number itself
-    cat(chosen, "\n")
-  }
+  cat("Selected number:", chosen, "\n")
 }
 ```
 ```{r}
