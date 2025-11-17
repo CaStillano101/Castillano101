@@ -11,7 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 #1
-# Create data frame
 shoe_data <- data.frame(
   ShoeSize = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 7.0, 7.5, 7.5, 8.5, 10.5,
                13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 10.5, 8.0, 11.0, 9.0, 13.0),
@@ -26,16 +25,13 @@ shoe_data
 summary(shoe_data)
 
 # B
-# Subset for females
 female_data <- subset(shoe_data, Gender == "F", select = c(ShoeSize, Height))
 female_data
 
-# Subset for males
 male_data <- subset(shoe_data, Gender == "M", select = c(ShoeSize, Height))
 male_data
 
 # C
-# Mean of all respondents
 mean_shoe <- mean(shoe_data$ShoeSize)
 mean_height <- mean(shoe_data$Height)
 
@@ -43,7 +39,6 @@ mean_shoe
 mean_height
 
 # D
-# Correlation test
 correlation <- cor(shoe_data$ShoeSize, shoe_data$Height)
 correlation
 ```
@@ -56,33 +51,25 @@ months_vector <- c("March","April","January","November","January",
                    "July","December","August","August","September","November",
                    "February","April")
 
-# Convert to factor
 factor_months_vector <- factor(months_vector)
 
-# Print the factor vector
 factor_months_vector
 ```
 ```{r}
 #3
-# Summary of character vector
 summary(months_vector)
 
-# Summary of factor vector
 summary(factor_months_vector)
 ```
 ```{r}
 #4
-# Create vector
 direction <- c("East", "West", "North")
 frequency <- c(1, 4, 3)
 
-# Create factor with specific order
 factor_data <- factor(direction, levels = c("East", "West", "North"))
 
-# Print the ordered factor
 print(factor_data)
 
-# Combine into a data frame
 table_data <- data.frame(Direction = factor_data, Frequency = frequency)
 print(table_data)
 ```
@@ -143,9 +130,6 @@ min_bills <- function(price) {
   return(count)
 }
 
-# ---- RUN PROGRAM ----
-
-# generate random price divisible by 50
 price <- sample(seq(50, 5000, by = 50), 1)
 cat("Price of snack:", price, "\n")
 cat("Minimum bills needed:", min_bills(price), "\n")
