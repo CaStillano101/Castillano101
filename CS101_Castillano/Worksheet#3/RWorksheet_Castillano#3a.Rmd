@@ -60,7 +60,7 @@ temp
 ```{r}
 #c
 weather_data <- data.frame(city, temp)
-weather_data
+weather_data 
 ```
 ```{r}
 #d

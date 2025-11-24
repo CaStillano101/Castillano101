@@ -91,7 +91,7 @@ household_data <- data.frame(
   Persons_at_Home = c(5, 7, 3, 8, 6, 4, 2, 2, 11, 6),
   Siblings_at_School = c(2, 3, 0, 5, 2, 3, 1, 2, 6, 2),
   Types_of_Houses = c("Wood", "Congrete", "Congrete", "Wood", "Wood", "Semi-congrete", "Semi-congrete", 
-                      "Wood", "Semi-concrete", "Concrete")
+                      "Wood", "Semi-congrete", "Congrete")
 )
 write.csv(household_data, file = "HouseholdData.csv", row.names = FALSE)
 print(household_data)
@@ -107,7 +107,7 @@ print(imported_data)
 ```{r}
 #c
 imported_data$Types_of_Houses <- factor(imported_data$Types_of_Houses, 
-                                         levels = c("Wood", "Concrete", "Semi-concrete"), 
+                                         levels = c("Wood", "Concrete", "Semi-congrete"), 
                                          labels = c(1, 2, 3))
 print(imported_data)
 ```
@@ -150,5 +150,9 @@ Count <- c(
   3700, 2800, 3400
 )
 sentiment_data <- data.frame(Date, Sentiment, Count)
-sentiment_data
+sentiment_data 
+```
+
+```{r}
+#####Interpretation of the graph: July 15 and July 21 have the highest count.
 ```
