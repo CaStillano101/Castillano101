@@ -1,0 +1,55 @@
+---
+title: "Practice"
+author: "Castillano, Rashir John E."
+date: "2025-10-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Create data frame of Philippine-made cars and their engines
+PH_cars <- data.frame(
+  Brand = c("Aurelio", "Sarao Motors", "Toyota PH", "Honda PH", "Mazda PH", "Mitsubishi PH", "Chariot Motors"),
+  Model = c("Aurelio Supercar", "Jeepney", "Vios", "City", "3 Sedan", "Mirage G4", "Chariot EV"),
+  Engine = c("Mitsubishi 4G63 Turbo", 
+             "Diesel Inline-4", 
+             "1.3L Dual VVT-i", 
+             "1.5L i-VTEC", 
+             "1.5L SkyActiv-G", 
+             "1.2L MIVEC", 
+             "Electric Motor"),
+  Type = c("Sports Car", "Utility", "Sedan", "Sedan", "Sedan", "Sedan", "EV"),
+  Assembled_in_PH = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)
+)
+
+# View the data frame
+print(PH_cars)
+
+# -----------------------------
+# Convert the data frame to a matrix
+# -----------------------------
+PH_cars_matrix <- as.matrix(PH_cars)
+
+# Print the matrix
+cat("\nMatrix version:\n")
+print(PH_cars_matrix)
+
+# -----------------------------
+# Save the data frame to a CSV file
+# -----------------------------
+write.csv(PH_cars, "PH_cars.csv", row.names = FALSE)
+
+cat("\nCSV file 'PH_cars.csv' has been created in your working directory.\n")
+
+# -----------------------------
+# (Optional) Read it back from CSV
+# -----------------------------
+PH_cars_loaded <- read.csv("PH_cars.csv")
+
+cat("\nLoaded back from CSV:\n")
+print(PH_cars_loaded)
+
+```
